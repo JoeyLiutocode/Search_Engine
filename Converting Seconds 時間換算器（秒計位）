@@ -1,0 +1,52 @@
+def convert_seconds(second):
+#First set unit of time hour, minute and second with plural form
+    hour_num = 'hours'
+    min_num = 'minutes'
+    sec_num = 'seconds'
+#If second is greater or equal to 3600, put set hour to 1
+    if (second / (60 ** 2)) >= 1:
+        hour = int(second) / (60 ** 2)
+        second = second % (60 ** 2)
+        if (second / 60) >= 1:
+            minute = int(second) / 60
+            second = second % 60
+        else:
+            minute = 0
+            second = second % 60
+    else:
+        hour = 0
+        if (second / 60) >= 1:
+            minute = int(second) / 60
+            second = second % 60
+        else:
+            minute = 0
+            second = second %  60
+#When hour is equal to 1, hour_num will read to last second character which 'hours' will become 'hour'.
+    if hour == 1:
+        hour_num = hour_num[:-1]
+    if minute == 1:
+        min_num = min_num[:-1]
+    if second == 1:
+        sec_num = sec_num[:-1]
+    return(str(hour) + ' ' + hour_num + ', '  + str(minute) + ' ' + min_num + ', '  + str(second) + ' ' + sec_num ) 
+    
+    
+---------------------test case--------------------
+   
+print convert_seconds(3661)
+#>>> 1 hour, 1 minute, 1 second
+
+print convert_seconds(7325)
+#>>> 2 hours, 2 minutes, 5 seconds
+
+print convert_seconds(7261.7)
+#>>> 2 hours, 1 minute, 1.7 seconds
+
+print convert_seconds(60)
+#>>>0 hours, 1 minute, 0 seconds
+
+print convert_seconds(3600)
+#>>1 hour, 0 minutes, 0 seconds
+
+print convert_seconds(0)
+#>>0 hours, 0 minutes, 0 seconds
