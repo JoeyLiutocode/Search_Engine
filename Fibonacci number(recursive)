@@ -5,3 +5,13 @@ def fibonacci(n):
         return 1
     if n > 1:
         return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+---------------another way to solve this---------------
+
+def fibonacci(n):
+    current = 0
+    after = 1
+    for i in range(0, n):
+        current, after = after, current + after
+    return current
