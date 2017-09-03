@@ -1,0 +1,31 @@
+ada_family = { 'Judith Blunt-Lytton': ['Anne Isabella Blunt', 'Wilfrid Scawen Blunt'],
+              'Ada King-Milbanke': ['Ralph King-Milbanke', 'Fanny Heriot'],
+              'Ralph King-Milbanke': ['Augusta Ada King', 'William King-Noel'],
+              'Anne Isabella Blunt': ['Augusta Ada King', 'William King-Noel'],
+              'Byron King-Noel': ['Augusta Ada King', 'William King-Noel'],
+              'Augusta Ada King': ['Anne Isabella Milbanke', 'George Gordon Byron'],
+              'George Gordon Byron': ['Catherine Gordon', 'Captain John Byron'],
+              'John Byron': ['Vice-Admiral John Byron', 'Sophia Trevannion'] }
+             
+
+def ancestors(genealogy, person):
+  if person in genealogy:
+    parents = genealogy[person] ###genealogy[person] = ['Anne Isabella Milbanke', 'George Gordon Byron']
+    result = parents
+    for parent in parents:
+      result = result + ancestor(genealogy, parent)
+    return result
+  return []
+
+------------test case-------------------
+print ancestors(ada_family, 'Augusta Ada King')
+#>>> ['Anne Isabella Milbanke', 'George Gordon Byron',
+#    'Catherine Gordon','Captain John Byron']
+
+print ancestors(ada_family, 'Judith Blunt-Lytton')
+#>>> ['Anne Isabella Blunt', 'Wilfrid Scawen Blunt', 'Augusta Ada King',
+#    'William King-Noel', 'Anne Isabella Milbanke', 'George Gordon Byron',
+#    'Catherine Gordon', 'Captain John Byron']
+
+print ancestors(ada_family, 'Dave')
+#>>> []
